@@ -2,21 +2,19 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: stretch;
 
   .form__row {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: stretch;
   }
 
   .form__control {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-left: 5px;
-    padding-right: 5px;
+    flex: 1;
+
+    margin-left: 5px;
+    margin-right: 5px;
     margin-bottom: 10px;
 
     label {
@@ -25,18 +23,22 @@
   }
 
   .form__actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-
     button {
       margin-left: 5px;
       margin-right: 5px;
     }
   }
 
+
+
   .form__fieldset {
-    display: flex;
-    width: 100%;
+    flex: 1;
+    border: 1px solid #bdbdbd;
+    margin-top: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
   }
+
+  .form__row > :first-child { margin-left: 0 !important; }
+  .form__row > :last-child { margin-right: 0 !important; }
 }

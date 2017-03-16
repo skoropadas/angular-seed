@@ -1,8 +1,8 @@
-import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
-import {UserService} from "../../shared/users/user.service";
-import {User} from "../../shared/users/user.model";
+import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Location} from '@angular/common';
+import {User} from "../shared/users/user.model";
+import {UserService} from "../shared/users/user.service";
 declare var google: any;
 
 @Component({
@@ -11,11 +11,11 @@ declare var google: any;
   templateUrl: 'user-form.component.html',
   styleUrls: ['user-form.component.css'],
 })
-export class UserFormComponent implements OnInit {
+export class UserFormComponent implements OnInit, AfterViewInit {
   user: User;
-  @ViewChild('googleMap') googleMap: ElementRef;
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  userMarker: any;
+  @ViewChild('googleMap') googleMapRef: ElementRef;
+  googleMap: any;
 
   constructor(private route: ActivatedRoute,
               private location: Location,
@@ -30,12 +30,17 @@ export class UserFormComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    this.mapInit();
+  }
+
+
   getUser(id: number) {
     this.userService.get(id).subscribe(
       result => {
         this.user = result;
+        this.mapMarkerPosition();
         console.log(this.user);
-        console.log(this.googleMap)
       },
       error => console.error('Error', error)
     )
@@ -62,11 +67,26 @@ export class UserFormComponent implements OnInit {
       );
   }
 
-  test() {
-    this.lng = this.user.address.geo.lng;
-    this.lat = this.user.address.geo.lat;
-    console.log(google)
-    console.log(this.googleMap);
+  mapInit() {
+    let latLng = new google.maps.LatLng(0, 0);
+    let mapProp = {
+      center: latLng,
+      zoom: 5,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    this.googleMap = new google.maps.Map(this.googleMapRef.nativeElement, mapProp);
+    this.userMarker = new google.maps.Marker({
+      position: latLng
+    });
+    this.userMarker.setMap(this.googleMap);
+  }
+
+  mapMarkerPosition() {
+    //add marker
+    let latLng = new google.maps.LatLng(this.user.address.geo.lat, this.user.address.geo.lng);
+    this.userMarker.setPosition(latLng)
+    this.googleMap.setCenter(latLng);
   }
 
   onCancel() {

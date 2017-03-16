@@ -1,0 +1,12 @@
+.grid {
+
+  .grid__row {
+    display: flex;
+
+    .grid__item {
+      flex: 1;
+      padding: 5px;
+    }
+  }
+}
+

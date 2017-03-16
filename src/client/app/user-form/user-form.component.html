@@ -1,0 +1,114 @@
+<div class="grid">
+  <div class="grid__row">
+    <div class="grid__item">
+      <form class="form" (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <div class="form__row form__actions">
+          <button class="success" (click)="onSave()" type="button">Save</button>
+          <button (click)="onCancel()" type="button">Cancel</button>
+        </div>
+        <!--User Info-->
+        <div class="form__row">
+          <fieldset class="form__fieldset">
+            <legend>User Info</legend>
+            <div class="form__row">
+              <div class="form__control">
+                <label>Name</label>
+                <input type="text" name="name" [(ngModel)]="user.name">
+              </div>
+              <div class="form__control">
+                <label>Username</label>
+                <input type="text" name="username" [(ngModel)]="user.username">
+              </div>
+              <div class="form__control">
+                <label>Email</label>
+                <input type="email" name="email" [(ngModel)]="user.email">
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__control">
+                <label>Phone</label>
+                <input type="text" name="phone" [(ngModel)]="user.phone">
+              </div>
+              <div class="form__control">
+                <label>Website</label>
+                <input type="text" name="website" [(ngModel)]="user.website">
+              </div>
+            </div>
+          </fieldset>
+        </div>
+        <div class="form__row">
+          <!--Adress-->
+          <fieldset class="form__fieldset">
+            <legend>Address</legend>
+            <div class="form__row">
+              <div class="form__control">
+                <label>Street</label>
+                <input type="text" name="address_street" [(ngModel)]="user.address.street">
+              </div>
+              <div class="form__control">
+                <label>Suite</label>
+                <input type="text" name="address_suite" [(ngModel)]="user.address.suite">
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__control">
+                <label>City</label>
+                <input type="text" name="address_city" [(ngModel)]="user.address.city">
+              </div>
+              <div class="form__control">
+                <label>Zipcode</label>
+                <input type="text" name="address_zipcode" [(ngModel)]="user.address.zipcode">
+              </div>
+            </div>
+            <div class="form__row">
+              <fieldset class="form__fieldset">
+                <legend>Geo</legend>
+                <div class="form__row">
+                  <div class="form__control">
+                    <label>Latitude</label>
+                    <input type="number" name="address_geo_lat" [(ngModel)]="user.address.geo.lat"
+                           (change)="mapMarkerPosition()">
+                  </div>
+                  <div class="form__control">
+                    <label>Longitude</label>
+                    <input type="number" name="address_geo_lng" [(ngModel)]="user.address.geo.lng"
+                           (change)="mapMarkerPosition()">
+                  </div>
+                </div>
+                <div class="form__row">
+                  <div class="form__control">
+                    <div style="flex: 1; height: 300px" #googleMap></div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+          </fieldset>
+
+
+          <fieldset class="form__fieldset">
+            <!--Company-->
+            <legend>Company</legend>
+            <div class="form__row">
+              <div class="form__control">
+                <label>Name</label>
+                <input type="text" name="company_name" [(ngModel)]="user.company.name">
+              </div>
+              <div class="form__control">
+                <label>Suite</label>
+                <input type="text" name="company_catchPhrase" [(ngModel)]="user.company.catchPhrase">
+              </div>
+            </div>
+            <div class="form__row">
+              <div class="form__control">
+                <label>City</label>
+                <input type="text" name="company_bs" [(ngModel)]="user.company.bs">
+              </div>
+            </div>
+
+
+          </fieldset>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -3,5 +3,4 @@
 export interface EnvConfig {
   API?: string;
   ENV?: string;
-  GOOGLE_MAPS_API_KEY?: string;
 }
