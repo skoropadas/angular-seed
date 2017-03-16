@@ -7,12 +7,16 @@ export class Address {
   zipcode: string;
   geo: Geo;
 
+  constructor() {
+    this.geo = new Geo();
+  }
+
   serialize(source: Address): Address {
     this.street = source.street;
     this.suite = source.suite;
     this.city = source.city;
     this.zipcode = source.zipcode;
-    this.geo = new Geo().serialize(source.geo);
+    this.geo.serialize(source.geo);
 
     return this;
   }
