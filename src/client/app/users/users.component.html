@@ -1,2 +1,25 @@
-qweqweqwe
-<div *ngFor="let user of users">{{user.name}}</div>
+<button class="primary" [routerLink]="['/users', 'new']">New</button>
+
+<table class="data-table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Website</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr *ngFor="let user of users" [routerLink]="['/users', user.id]">
+    <td>{{user.name}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.phone}}</td>
+    <td>{{user.website}}</td>
+  </tr>
+  </tbody>
+</table>
+
+

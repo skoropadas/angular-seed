@@ -8,9 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutModule } from './about/about.module';
 import { SharedModule } from './shared/shared.module';
 import {UsersModule} from "./users/users.module";
+import {UserFormModule} from "./users/user-form/user-form.module";
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, AppRoutingModule, AboutModule, UsersModule, SharedModule.forRoot()],
+  imports: [BrowserModule, HttpModule, AppRoutingModule, AboutModule, UsersModule, UserFormModule, SharedModule.forRoot()],
   declarations: [AppComponent],
   providers: [{
     provide: APP_BASE_HREF,

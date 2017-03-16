@@ -9,7 +9,7 @@ import {UserService} from "../shared/users/user.service";
   styleUrls: ['users.component.css'],
 })
 export class UsersComponent implements OnInit {
-  users: Array<User>;
+  users: User[];
 
   constructor(public userService: UserService) {
     this.users = [];
@@ -22,7 +22,7 @@ export class UsersComponent implements OnInit {
   getUsers() {
     this.userService.getAll().subscribe(
       result => this.users = result,
-      error => console.error('Произошла ошибка', error)
+      error => console.error('Error', error)
     )
   }
 }

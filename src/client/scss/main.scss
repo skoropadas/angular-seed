@@ -1,3 +1,6 @@
+@import "data-table";
+@import "form";
+
 /* Reset */
 html, body, div {
   border: 0;
@@ -28,24 +31,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-p {
-  font-weight: 400;
-  letter-spacing: 0.01em;
-  line-height: 20px;
-  margin-bottom: 1em;
-  margin-top: 1em;
-}
-
-ul {
-  margin: 10px 0 0;
-  padding: 0 0 0 20px;
-}
-
-li {
-  font-weight: 400;
-  margin-top: 4px;
-}
-
 input {
   border: 1px solid #106cc8;
   font-size: 14px;
@@ -55,17 +40,60 @@ input {
 }
 
 button {
-  background-color: #106cc8;
+  background-color: #c6cdc4;
   border-style: none;
-  color: rgba(255, 255, 255, 0.87);
+  color: rgba(17, 17, 17, 0.87);
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
   height: 40px;
   padding: 8px 18px;
   text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.success {
+  background-color: #00bc39;
+  color: #ffffff;
+}
+
+.primary {
+  background-color: #275fbc;
+  color: #ffffff;
+}
+
+.error {
+  background-color: #bc3730;
+  color: #ffffff;
 }
 
 button:hover {
-  background-color: #28739e;
+  background-color: #a8aba9;
 }
+
+button.success:hover {
+  background-color: #009b37;
+}
+
+button.primary:hover {
+  background-color: #254d9b;
+}
+
+button.error:hover {
+  background-color: #9b322b;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .page__container {
+    width: 1280px;
+    padding: 20px;
+  }
+}
+
+

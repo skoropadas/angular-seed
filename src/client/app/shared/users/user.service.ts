@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, RequestOptions, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Config} from "../config/env.config";
 import {User} from "./user.model";
@@ -25,6 +25,27 @@ export class UserService {
     return this.http.get(`${this.host}/users/${id}`)
       .map((res: Response) => new User().serialize(res.json()))
       .catch(this.handleError);
+  }
+
+  save(record: User): Observable<User> {
+    let headers = new Headers({'Content-type': 'application/json'});
+    let options = new RequestOptions({headers});
+    let body = JSON.stringify(record);
+
+    let url = `${this.host}/users/${record.id}`;
+    return this.http.put(url, body, options)
+      .map((res: Response) => new User().serialize(res.json()))
+      .catch(this.handleError)
+  }
+
+  create(record: User): Observable<User> {
+    let headers = new Headers({'Content-type': 'application/json'});
+    let options = new RequestOptions({headers});
+    let body = JSON.stringify(record);
+
+    return this.http.post(`${this.host}/users`, body, options)
+      .map((res: Response) => new User().serialize(res.json()))
+      .catch(this.handleError)
   }
 
   private handleError(error: any) {
