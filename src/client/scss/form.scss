@@ -1,14 +1,5 @@
 .form {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  .form__row {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .form__control {
+  &__control {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -22,23 +13,18 @@
     }
   }
 
-  .form__actions {
+  &__actions {
     button {
       margin-left: 5px;
       margin-right: 5px;
     }
   }
 
-
-
-  .form__fieldset {
-    flex: 1;
+  &__fieldset {
+    padding: 10px;
     border: 1px solid #bdbdbd;
     margin-top: 10px;
     margin-left: 5px;
     margin-right: 5px;
   }
-
-  .form__row > :first-child { margin-left: 0 !important; }
-  .form__row > :last-child { margin-right: 0 !important; }
 }

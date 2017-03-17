@@ -83,16 +83,3 @@ button.primary:hover {
 button.error:hover {
   background-color: #9b322b;
 }
-
-.page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-  .page__container {
-    width: 1280px;
-    padding: 20px;
-  }
-}

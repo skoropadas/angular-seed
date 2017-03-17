@@ -2,15 +2,16 @@
   <div class="grid__row">
     <div class="grid__item">
       <form class="form" (ngSubmit)="onSubmit()" #userForm="ngForm">
-        <div class="form__row form__actions">
+        <div class="grid__row form__actions">
           <button class="success" (click)="onSave()" type="button">Save</button>
+          <button class="error" (click)="onDelete()" type="button" *ngIf="user.id">Delete</button>
           <button (click)="onCancel()" type="button">Cancel</button>
         </div>
         <!--User Info-->
-        <div class="form__row">
-          <fieldset class="form__fieldset">
+        <div class="grid__row">
+          <fieldset class="grid__item form__fieldset">
             <legend>User Info</legend>
-            <div class="form__row">
+            <div class="grid__row">
               <div class="form__control">
                 <label>Name</label>
                 <input type="text" name="name" [(ngModel)]="user.name">
@@ -24,7 +25,7 @@
                 <input type="email" name="email" [(ngModel)]="user.email">
               </div>
             </div>
-            <div class="form__row">
+            <div class="grid__row">
               <div class="form__control">
                 <label>Phone</label>
                 <input type="text" name="phone" [(ngModel)]="user.phone">
@@ -36,11 +37,11 @@
             </div>
           </fieldset>
         </div>
-        <div class="form__row">
+        <div class="grid__row">
           <!--Adress-->
-          <fieldset class="form__fieldset">
+          <fieldset class="grid__item form__fieldset">
             <legend>Address</legend>
-            <div class="form__row">
+            <div class="grid__row">
               <div class="form__control">
                 <label>Street</label>
                 <input type="text" name="address_street" [(ngModel)]="user.address.street">
@@ -50,7 +51,7 @@
                 <input type="text" name="address_suite" [(ngModel)]="user.address.suite">
               </div>
             </div>
-            <div class="form__row">
+            <div class="grid__row">
               <div class="form__control">
                 <label>City</label>
                 <input type="text" name="address_city" [(ngModel)]="user.address.city">
@@ -60,10 +61,10 @@
                 <input type="text" name="address_zipcode" [(ngModel)]="user.address.zipcode">
               </div>
             </div>
-            <div class="form__row">
-              <fieldset class="form__fieldset">
+            <div class="grid__row">
+              <fieldset class="grid__item form__fieldset">
                 <legend>Geo</legend>
-                <div class="form__row">
+                <div class="grid__row">
                   <div class="form__control">
                     <label>Latitude</label>
                     <input type="number" name="address_geo_lat" [(ngModel)]="user.address.geo.lat"
@@ -75,7 +76,7 @@
                            (change)="mapMarkerPosition()">
                   </div>
                 </div>
-                <div class="form__row">
+                <div class="grid__row">
                   <div class="form__control">
                     <div style="flex: 1; height: 300px" #googleMap></div>
                   </div>
@@ -85,10 +86,10 @@
           </fieldset>
 
 
-          <fieldset class="form__fieldset">
+          <fieldset class="grid__item form__fieldset">
             <!--Company-->
             <legend>Company</legend>
-            <div class="form__row">
+            <div class="grid__row">
               <div class="form__control">
                 <label>Name</label>
                 <input type="text" name="company_name" [(ngModel)]="user.company.name">
@@ -98,7 +99,7 @@
                 <input type="text" name="company_catchPhrase" [(ngModel)]="user.company.catchPhrase">
               </div>
             </div>
-            <div class="form__row">
+            <div class="grid__row">
               <div class="form__control">
                 <label>City</label>
                 <input type="text" name="company_bs" [(ngModel)]="user.company.bs">

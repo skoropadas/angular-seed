@@ -48,6 +48,15 @@ export class UserService {
       .catch(this.handleError)
   }
 
+  delete(record: User) {
+    let headers = new Headers({'Content-type': 'application/json'});
+    let options = new RequestOptions({headers});
+
+    let url = `${this.host}/users/${record.id}`;
+    return this.http.delete(url, options)
+      .catch(this.handleError)
+  }
+
   private handleError(error: any) {
     let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

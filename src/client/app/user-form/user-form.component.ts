@@ -14,8 +14,9 @@ declare var google: any;
 export class UserFormComponent implements OnInit, AfterViewInit {
   user: User;
   userMarker: any;
-  @ViewChild('googleMap') googleMapRef: ElementRef;
   googleMap: any;
+  @ViewChild('googleMap') googleMapRef: ElementRef;
+
 
   constructor(private route: ActivatedRoute,
               private location: Location,
@@ -40,7 +41,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       result => {
         this.user = result;
         this.mapMarkerPosition();
-        console.log(this.user);
+        console.log('user', this.user);
       },
       error => console.error('Error', error)
     )
@@ -48,6 +49,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
 
   onSave() {
     if (this.user.id)
+    //save
       this.userService.save(this.user).subscribe(
         result => {
           this.user = result;
@@ -57,6 +59,7 @@ export class UserFormComponent implements OnInit, AfterViewInit {
         error => console.error('Error', error)
       );
     else
+    //create
       this.userService.create(this.user).subscribe(
         result => {
           this.user = result;
@@ -67,8 +70,18 @@ export class UserFormComponent implements OnInit, AfterViewInit {
       );
   }
 
+  onDelete() {
+    this.userService.delete(this.user).subscribe(
+      () => {
+        console.log('deleted', this.user);
+        this.location.back();
+      },
+      error => console.error('Error', error)
+    );
+  }
+
   mapInit() {
-    let latLng = new google.maps.LatLng(0, 0);
+    let latLng = new google.maps.LatLng(this.user.address.geo.lat, this.user.address.geo.lng);
     let mapProp = {
       center: latLng,
       zoom: 5,
@@ -83,9 +96,8 @@ export class UserFormComponent implements OnInit, AfterViewInit {
   }
 
   mapMarkerPosition() {
-    //add marker
     let latLng = new google.maps.LatLng(this.user.address.geo.lat, this.user.address.geo.lng);
-    this.userMarker.setPosition(latLng)
+    this.userMarker.setPosition(latLng);
     this.googleMap.setCenter(latLng);
   }
 

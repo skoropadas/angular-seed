@@ -13,12 +13,4 @@ export class Geo {
 
     return this;
   }
-
-  get latNumber(): number {
-    return this.lat
-  }
-
-  get lngNumber(): number {
-    return this.lng
-  }
 }
